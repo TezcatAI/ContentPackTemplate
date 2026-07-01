@@ -1,0 +1,27 @@
+# A profile: a named, runnable set of prompts. Users pick a profile to run a
+# batch of probes against a target agent in one pass.
+slug: example-sweep                 # kebab-case, unique within your namespace
+version: "1.0.0"
+name: "Example Sweep"
+description: >
+  Runs every baseline probe in this pack. A starting point; replace with the
+  grouping that makes sense for your content.
+enabled: true
+
+# How the profile selects prompts. Two modes:
+#
+# `filter_spec` (used here): dynamically include every prompt matching a filter.
+# Good for "run all baseline probes" style profiles that pick up new prompts
+# automatically as you add them.
+resolver_mode: filter_spec
+filter_spec:
+  tags: ["baseline"]
+  latest_version_only: true
+
+# `explicit_list`: pin an exact, ordered set of prompts by coordinate. Good when
+# order matters or you want a fixed, curated set. Swap `resolver_mode` to
+# `explicit_list` and use this instead of `filter_spec`:
+#
+# resolver_mode: explicit_list
+# explicit_prompt_refs:
+#   - { namespace: example, slug: example-capability-direct, version: "^1.0.0" }

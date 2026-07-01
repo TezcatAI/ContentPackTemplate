@@ -1,0 +1,28 @@
+# A risk framework: a named taxonomy of items that capabilities and prompts map
+# their findings against. You usually will NOT need to ship your own framework:
+# the official `tezcat` pack already carries OWASP ASI, NIST AI RMF, and AVID,
+# and your capabilities can reference their item codes directly. Ship a custom
+# framework only when you have an in-house taxonomy of your own. This file exists
+# so the rest of the example resolves without depending on the official pack.
+framework:
+  slug: example-framework          # unique within your namespace
+  display_name: "Example Risk Framework"
+  version: "2026"
+  citation_url: "https://example.com/your-framework"
+  description: >-
+    A tiny illustrative taxonomy. Replace with your own framework, or delete
+    this file and reference official codes (e.g. ASI05, AML.T0050) instead.
+
+# `item_kind` labels what the entries below represent (category, control, etc.).
+item_kind: category
+
+# Optional. If your framework has a stable per-item URL, use `{code}` as the
+# placeholder and Tezcat will build a link for each item. Leave empty if none.
+url_template: ""
+
+# The enumerated items. Each `code` is what capabilities and prompts reference
+# in their `framework_items` lists.
+items:
+  - code: EX01
+    title: "Example risk category"
+    description: "A placeholder risk category for the template example."

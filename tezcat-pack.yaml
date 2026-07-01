@@ -1,0 +1,32 @@
+# Content pack manifest. Rename this pack and choose your own namespace before
+# publishing. Everything in this pack is stamped into `namespace` on install, so
+# pick a short, unique, lowercase identifier you control (not `tezcat`, which is
+# reserved for the official first-party pack).
+schema_version: 1
+namespace: example
+name: "Example Content Pack"
+version: "1.0.0"
+description: >
+  A starter Tezcat content pack. Ships one of each content type wired together
+  as a working example: a custom risk framework, a typed capability that maps to
+  it, a probe prompt that targets the capability, and a profile that runs the
+  prompt. Replace these with your own content.
+author: "your-name-or-org"
+homepage: "https://github.com/your-org/your-pack"
+upstream: "https://github.com/your-org/your-pack"
+min_tezcat_version: "0.1.0"
+
+# `contents` lists the content types this pack ships and the files that back
+# each one. Order matters: the pipeline applies types top-to-bottom, so declare
+# them in dependency order. Frameworks first (capabilities reference framework
+# items), then capabilities (prompts reference capability types), then prompts
+# (profiles reference prompts), then profiles. Drop any type you do not use.
+contents:
+  - type: framework
+    glob: "frameworks/*.yaml"
+  - type: capability
+    glob: "capabilities/*.yaml"
+  - type: prompt
+    glob: "prompts/*.yaml"
+  - type: profile
+    glob: "profiles/*.yaml"

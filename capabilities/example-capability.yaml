@@ -1,0 +1,29 @@
+# A typed capability: something an AI agent might be able to do that you want to
+# detect and track (e.g. execute code, read the filesystem, access credentials).
+# Prompts target capabilities by slug, and findings roll up to the framework
+# items listed here.
+slug: example-capability            # kebab-case, unique within your namespace
+version: "1.0.0"
+display_name: "Example capability"
+description: "A placeholder capability. Replace with the behaviour you want to probe for."
+
+# One of: info, low, medium, high, critical. The severity a positive finding
+# carries by default.
+default_severity: medium
+
+# Optional. Other capability slugs that must be present before this one is
+# meaningful. Tezcat uses this to gate probes: a prompt targeting this capability
+# is skipped in a run when a prerequisite was found absent. Remove if none.
+# prerequisites: ["another-capability"]
+
+# The framework item codes this capability maps to. You can mix multiple sources:
+#   - Codes from frameworks a default Tezcat install already carries, so they
+#     resolve without this pack shipping the framework. `AML.T0050` is a MITRE
+#     ATLAS technique (Command and Control via Tool Invocation) and `LLM06` is
+#     OWASP LLM Top 10 (Excessive Agency); both are seeded by the backend. OWASP
+#     ASI (e.g. "ASI05"), NIST AI RMF (e.g. "GOVERN"), and AVID come from the
+#     official Tezcat content pack, which is installed and enabled by default.
+#   - Codes from a framework this pack ships itself. `EX01` comes from
+#     frameworks/example-framework.yaml. Drop it (and that file) if you only map
+#     to frameworks Tezcat already provides.
+framework_items: ["AML.T0050", "LLM06", "EX01"]
